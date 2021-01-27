@@ -21,6 +21,8 @@
     "react-toastify": "^6.0.5",
     "redux": "^4.0.5",
     "redux-promise-middleware": "^6.1.2",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
     "stripe": "^8.60.0"
   },
   "scripts": {

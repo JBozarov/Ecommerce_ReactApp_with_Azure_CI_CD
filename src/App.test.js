@@ -1,9 +1,11 @@
 import React from 'react';
-import { render } from '@testing-library/react';
 import App from './App';
+import Adapter from 'enzyme-adapter-react-16';
+import { shallow, configure } from 'enzyme';
 
-test('renders learn react link', () => {
-  const { getByText } = render(<App />);
-  const linkElement = getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+configure({ adapter : new Adapter() })
+
+it("should create snapshot", () => {
+  const component = shallow(<App />)
+  expect(component).toMatchSnapshot(); 
+})
