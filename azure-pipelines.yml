@@ -28,4 +28,5 @@ stages:
           - task: Npm@1
             displayName: "Npm test"
             inputs: 
-              command: "npm test"
+              command: custom
+              customCommand: "run run-test"
