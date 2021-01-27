@@ -30,3 +30,9 @@ stages:
             inputs: 
               command: custom
               customCommand: "run run-test"
+
+          - task: Npm@1
+            displayName: "Npm build"
+            inputs: 
+              command: custom
+              customCommand: "run build"
