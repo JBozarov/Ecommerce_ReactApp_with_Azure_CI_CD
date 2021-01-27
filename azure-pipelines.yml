@@ -28,4 +28,4 @@ stages:
           - task: Npm@1
             displayName: "Npm test"
             inputs: 
-              command: "test"
+              command: "npm test"
