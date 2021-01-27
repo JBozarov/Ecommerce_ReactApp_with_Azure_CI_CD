@@ -24,3 +24,8 @@ stages:
             displayName: "NPM Install"
             inputs: 
               command: "install"
+
+          - task: Npm@1
+            displayName: "Npm test"
+            inputs: 
+              command: "run run-test"
