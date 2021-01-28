@@ -31,6 +31,12 @@ stages:
               command: custom
               customCommand: "run run-test"
 
+          - task: PublishTestResults@2
+            condition: succeededOrFailed()
+            inputs:
+              testRunner: JUnit
+              testResultsFiles: "**/test-report.xml"
+
           - task: Npm@1
             displayName: "Npm build"
             inputs: 
