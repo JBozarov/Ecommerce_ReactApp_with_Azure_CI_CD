@@ -64,15 +64,24 @@ stages:
           - task: CopyFiles@2
             displayName: Copy zip build files
             inputs: 
+              Contents: |
+                archive/**
+                build/**
+              targetFolder: $(Build.ArtifactStagingDirectory)
+
+          - task: PublishBuildArtifacts@1
+            displayName: Publish build artifact
+            inputs:
               pathToPublish: $(Build.ArtifactStagingDirectory)
               artifactName: react-build-artifact
 
           - task: S3Upload@1
             displayName: "Deploy to S3 Bucket"
             inputs:
-              awsCredentials: 'AWS Connection'
-              regionName: 'us-east-1'
-              bucketName: 'azure-react-app-deployment'
-              sourceFolder: '$(System.DefaultWorkingDirectory)/React_Project/build'
-              globExpressions: '**'
+              awsCredentials: "AWS Connection"
+              regionName: "us-east-1"
+              bucketName: "azure-react-app-deployment"
+              sourceFolder: "$(System.DefaultWorkingDirectory)/react-build-artifact/build"
+              globExpressions: '**/*'
+              targetFolder: "."
               createBucket: true
