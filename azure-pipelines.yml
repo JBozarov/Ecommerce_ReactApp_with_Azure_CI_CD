@@ -36,3 +36,9 @@ stages:
             inputs: 
               command: custom
               customCommand: "run build"
+
+          - task: Npm@1
+            displayName: "Npm test coverage"
+            inputs: 
+              command: custom
+              customCommand: "run test-coverage"

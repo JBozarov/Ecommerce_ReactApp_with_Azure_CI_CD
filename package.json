@@ -30,6 +30,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "run-test": "react-scripts test --watchAll=false --testResultsProcessor",
+    "test-coverage": "react-scripts test --watchAll=false --coverage --coverageReporters cobertura",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
