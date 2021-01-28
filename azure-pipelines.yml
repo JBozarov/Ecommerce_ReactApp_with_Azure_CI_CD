@@ -56,6 +56,7 @@ stages:
               customCommand: "run zip"
 
           - task: S3Upload@1
+            displayName: "Deploy to S3 Bucket"
             inputs:
               awsCredentials: 'AWS Connection'
               regionName: 'us-east-1'
