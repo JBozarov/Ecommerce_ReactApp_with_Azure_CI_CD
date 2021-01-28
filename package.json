@@ -33,7 +33,7 @@
     "test-coverage": "react-scripts test --watchAll=false --coverage --coverageReporters cobertura",
     "eject": "react-scripts eject",
     "zip": "mkdir archive && npm-build-zip --info=true --destination=archive",
-    "audit": "audit"
+    "verify": "audit"
   },
   "eslintConfig": {
     "extends": "react-app"

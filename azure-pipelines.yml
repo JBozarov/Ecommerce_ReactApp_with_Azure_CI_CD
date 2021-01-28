@@ -48,3 +48,9 @@ stages:
             inputs: 
               command: custom
               customCommand: "audit"
+              
+          - task: Npm@1
+            displayName: "NPM zip archive"
+            inputs:
+              command: "custom"
+              customCommand: "run zip"
