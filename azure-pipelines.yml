@@ -64,6 +64,14 @@ stages:
           - task: CopyFiles@2
             displayName: Copy zip build files
             inputs: 
+              Contents: |
+                archive/**
+                build/**
+              targetFolder: $(Build.ArtifactStagingDirectory)
+
+          - task: PublishBuildArtifact@1
+            displayName: Publish build artifact
+            inputs:
               pathToPublish: $(Build.ArtifactStagingDirectory)
               artifactName: react-build-artifact
 
