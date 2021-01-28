@@ -23,6 +23,7 @@
     "react-toastify": "^6.0.5",
     "redux": "^4.0.5",
     "redux-promise-middleware": "^6.1.2",
+    "npm-build-zip": "^1.0.2",
     "stripe": "^8.60.0"
   },
   "scripts": {
@@ -33,7 +34,8 @@
     "test-coverage": "react-scripts test --watchAll=false --coverage --coverageReporters cobertura",
     "eject": "react-scripts eject",
     "zip": "mkdir archive && npm-build-zip --info=true --destination=archive",
-    "verify": "audit"
+    "verify": "audit",
+    "deploy": "aws s3 sync build/ s3://"
   },
   "eslintConfig": {
     "extends": "react-app"
