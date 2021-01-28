@@ -69,7 +69,7 @@ stages:
                 build/**
               targetFolder: $(Build.ArtifactStagingDirectory)
 
-          - task: PublishBuildArtifact@1
+          - task: PublishBuildArtifacts@1
             displayName: Publish build artifact
             inputs:
               pathToPublish: $(Build.ArtifactStagingDirectory)
