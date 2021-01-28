@@ -26,16 +26,22 @@ stages:
               command: "install"
 
           - task: Npm@1
+            displayName: "Npm build"
+            inputs: 
+              command: custom
+              customCommand: "run build"
+
+          - task: Npm@1
             displayName: "Npm test"
             inputs: 
               command: custom
               customCommand: "run run-test"
 
-          - task: Npm@1
-            displayName: "Npm build"
-            inputs: 
-              command: custom
-              customCommand: "run build"
+          - task: PublishTestResults@2
+            condition: succeededOrFailed()
+            inputs:
+              testRunner: JUnit
+              testResultsFiles: "**/test-report.xml"
 
           - task: Npm@1
             displayName: "Npm test coverage"
@@ -54,8 +60,15 @@ stages:
             inputs:
               command: "custom"
               customCommand: "run zip"
+          
+          - task: CopyFiles@2
+            displayName: Copy zip build files
+            inputs: 
+              pathToPublish: $(Build.ArtifactStagingDirectory)
+              artifactName: react-build-artifact
 
           - task: S3Upload@1
+            displayName: "Deploy to S3 Bucket"
             inputs:
               awsCredentials: 'AWS Connection'
               regionName: 'us-east-1'
