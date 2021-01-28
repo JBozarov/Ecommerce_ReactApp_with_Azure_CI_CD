@@ -42,3 +42,24 @@ stages:
             inputs: 
               command: custom
               customCommand: "run test-coverage"
+
+          - task: Npm@1
+            displayName: "Npm audit"
+            inputs: 
+              command: custom
+              customCommand: "audit"
+              
+          - task: Npm@1
+            displayName: "NPM zip archive"
+            inputs:
+              command: "custom"
+              customCommand: "run zip"
+
+          - task: S3Upload@1
+            inputs:
+              awsCredentials: 'AWS Connection'
+              regionName: 'us-east-1'
+              bucketName: 'azure-react-app-deployment'
+              sourceFolder: '$(System.DefaultWorkingDirectory)/React_Project/build'
+              globExpressions: '**'
+              createBucket: true

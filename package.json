@@ -8,6 +8,8 @@
     "@testing-library/user-event": "^7.2.1",
     "bootstrap": "^4.5.0",
     "dotenv": "^8.2.0",
+    "enzyme": "^3.11.0",
+    "enzyme-adapter-react-16": "^1.15.5",
     "node-sass": "^4.14.1",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
@@ -16,13 +18,12 @@
     "react-modal": "^3.11.2",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "^4.0.1",
     "react-stripe-checkout": "^2.6.3",
     "react-toastify": "^6.0.5",
     "redux": "^4.0.5",
     "redux-promise-middleware": "^6.1.2",
-    "enzyme": "^3.11.0",
-    "enzyme-adapter-react-16": "^1.15.5",
+    "npm-build-zip": "^1.0.2",
     "stripe": "^8.60.0"
   },
   "scripts": {
@@ -31,7 +32,10 @@
     "test": "react-scripts test",
     "run-test": "react-scripts test --watchAll=false --testResultsProcessor",
     "test-coverage": "react-scripts test --watchAll=false --coverage --coverageReporters cobertura",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "zip": "mkdir archive && npm-build-zip --info=true --destination=archive",
+    "verify": "audit",
+    "deploy": "aws s3 sync build/ s3://"
   },
   "eslintConfig": {
     "extends": "react-app"
