@@ -81,7 +81,7 @@ stages:
               awsCredentials: "AWS Connection"
               regionName: "us-east-1"
               bucketName: "azure-react-app-deployment"
-              sourceFolder: "$(System.DefaultWorkingDirectory)/react-build-artifact/build"
+              sourceFolder: "$(Build.DefaultWorkingDirectory)/react-build-artifact/build"
               globExpressions: '**/*'
               targetFolder: "."
               createBucket: true
