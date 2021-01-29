@@ -75,13 +75,27 @@ stages:
               pathToPublish: $(Build.ArtifactStagingDirectory)
               artifactName: react-build-artifact
 
-          - task: S3Upload@1
-            displayName: "Deploy to S3 Bucket"
-            inputs:
-              awsCredentials: "AWS Connection"
-              regionName: "us-east-1"
-              bucketName: "azure-react-app-deployment"
-              sourceFolder: "$(Build.DefaultWorkingDirectory)/react-build-artifact/build"
-              globExpressions: '**/*'
-              targetFolder: "."
-              createBucket: true
+  - stage: deploy_to_dev
+    displayName: "DeployToDev"
+    jobs:
+      - deployment: deployWebToDev
+        displayName: deploy Web App to dev
+        pool:
+          vmImage: "ubuntu-20.04"
+        environment: "react-dev"
+        strategy:
+          runOnce:
+            deploy:
+              steps:
+                - script: |
+                    find $(Agent.BuildDirectory)
+                - task: S3Upload@1
+                  displayName: "Deploy to S3 Bucket"
+                  inputs:
+                    awsCredentials: "AWS Connection"
+                    regionName: "us-east-1"
+                    bucketName: "azure-react-app-deployment"
+                    sourceFolder: "$(Agent.BuildDirectory)/react-build-artifact/build"
+                    globExpressions: '**/*'
+                    targetFolder: "."
+                    createBucket: true
